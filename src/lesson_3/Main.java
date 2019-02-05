@@ -5,14 +5,14 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        //task1();
+        task1();
 
 
 
 
         //Задание 2
 
-        Map<String, String> phoneDirectory = new HashMap<>();
+        /*Map<String, String> phoneDirectory = new HashMap<>();
 
         add(phoneDirectory,"Иванов", "+79853325566");
         add(phoneDirectory,"Иванов", "+79853325544");
@@ -20,17 +20,17 @@ public class Main {
 
         get(phoneDirectory, "Петров");
         get(phoneDirectory, "Иванов");
-        get(phoneDirectory, "Сидоров");
+        get(phoneDirectory, "Сидоров");*/
     }
 
-    private static void add(Map directory, String secondName, String phone) {
+    private static void add(Map<String, String> directory, String secondName, String phone) {
 
-        String phone2 = (String) directory.get(secondName);
+        String phone2 = directory.get(secondName);
 
         directory.put(secondName, (phone2 == null) ? phone : phone2 + ", " + phone );
     }
 
-    private static void get(Map directory, String secondName) {
+    private static void get(Map<String, String> directory, String secondName) {
         System.out.println(directory.get(secondName) != null ? directory.get(secondName) : "Такой человек не найден.");
     }
 
@@ -61,24 +61,22 @@ public class Main {
         countries.add("Турция");
         countries.add("Турция");
 
-        Iterator<String> iterator = countries.iterator();
-
-        while(iterator.hasNext()) {
-            String country = iterator.next();
+        for (String country : countries) {
             Integer res = countriesMap.get(country);
-            countriesMap.put(country, ((res == null) ? 1 : res + 1) );
+            countriesMap.put(country, ((res == null) ? 1 : res + 1));
         }
 
         System.out.println(countriesMap);
-
-        Set<Map.Entry<String, Integer>> set = countriesMap.entrySet();
         System.out.println("\nУникальные страны:");
         System.out.println("==================");
-        for (Map.Entry<String, Integer> country: set) {
+
+        /*for (Map.Entry<String, Integer> country: countriesMap.entrySet()) {
             if(country.getValue() == 1) {
                 System.out.println(country.getKey());
             }
-        }
+        }*/
+
+        countriesMap.forEach((k, v) -> System.out.println(k));
     }
 
 }
